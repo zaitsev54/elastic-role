@@ -6,6 +6,7 @@
       mode: 0755
       timeout: 60
       force: true
+      validate_certs: false
     register: get_elastic
     until: get_elastic is succeeded
     tags: elastic
@@ -15,7 +16,7 @@
       path: "{{ elastic_home }}"
     tags: elastic
   - name: Extract Elasticsearch in the installation directory
-    #become: true
+    #become: yes
     unarchive:
       copy: false
       src: "/tmp/elasticsearch-{{ elastic_version }}-linux-x86_64.tar.gz"
